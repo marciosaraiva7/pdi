@@ -1,15 +1,16 @@
 
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { username } from "../../store/auth/reducer";
+import jwt_decode from 'jwt-decode'
 
 
+const token = localStorage.getItem("token");
+const decode: object = jwt_decode(token ?? "");
+const name = decode.name;
 
 
 const Dashboard = () => {
 
- const navigate = useNavigate()
- const name = useSelector(username)
+ const navigate = useNavigate();
 
  function toProfile() {
   navigate("/Profile")
@@ -19,7 +20,7 @@ const Dashboard = () => {
 
  return (
   <div>
-   <h1>Olá, {name}</h1>
+   <h1>Olá, { name }</h1>
    <button onClick={() => toProfile()}>to Profile</button>
   </div>
 

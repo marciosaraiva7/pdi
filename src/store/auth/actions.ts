@@ -1,11 +1,8 @@
 import { Types } from "./types";
 
-export function signin(name: string) {
+export function signin() {
   return {
     type: Types.SIGNIN,
-    payload: {
-      name,
-    },
   };
 }
 
