@@ -1,35 +1,25 @@
-
 import { useNavigate } from "react-router-dom";
-import jwt_decode from 'jwt-decode'
-
-type decodeType = {
- name: string
-}
+import parseJwt from "../../utils/decoder";
 
 const token = localStorage.getItem("token");
-const decode: decodeType = jwt_decode(token ?? "");
-const name = decode.name;
 
+let decode = parseJwt(token ?? "")
+
+console.log(decode.name)
 
 const Dashboard = () => {
+  const navigate = useNavigate();
 
- const navigate = useNavigate();
+  function toProfile() {
+    navigate("/Profile");
+  }
 
- function toProfile() {
-  navigate("/Profile")
- }
-
-
-
- return (
-  <div>
-   <h1>Olá, {name}</h1>
-   <button onClick={() => toProfile()}>to Profile</button>
-  </div>
-
- )
-}
-
+  return (
+    <div>
+      <h1>Olá</h1>
+      <button onClick={() => toProfile()}>to Profile</button>
+    </div>
+  );
+};
 
 export default Dashboard;
-
