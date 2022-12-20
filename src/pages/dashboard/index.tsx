@@ -1,14 +1,21 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useDecoder from "../../hooks/useDecoder";
 
-const token = localStorage.getItem("token");
-
-let decode = useDecoder(token ?? "")
-
-console.log(decode.name)
-
 const Dashboard = () => {
+  const [name, setName] = useState('')
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      let decode = useDecoder(token ?? "");
+      setName(decode.name)
+    }
+  },[token])
+
+  
 
   function toProfile() {
     navigate("/Profile");
@@ -16,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Olá</h1>
+      <h1>Olá, {name}</h1>
       <button onClick={() => toProfile()}>to Profile</button>
     </div>
   );

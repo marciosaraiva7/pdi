@@ -1,25 +1,23 @@
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { isLogged } from "../../store/auth/reducer";
 //Default Pages
 import Login from "../login";
 
 //Auth Pages
 import Dashboard from "../dashboard";
 import Profile from "../profile";
-
 interface PrivateProps {
  children: any,
  redirectTo: any,
 }
 
-
 const Router = () => {
- const logged = useSelector(isLogged)
- console.log(logged)
+
+ const token = localStorage.getItem("token")
+ 
 
  const PrivateRoute = ({ children, redirectTo }: PrivateProps) => {
-  return logged ? children : <Navigate to={redirectTo} />
+  return token ? children : <Navigate to={redirectTo} />
  }
 
  //Default Routes

@@ -1,5 +1,6 @@
 import { createStore, combineReducers, compose } from "redux";
-
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/reducer";
 
 declare global {
@@ -8,8 +9,15 @@ declare global {
   }
 }
 
+// const persistConfig = {
+//   key: "root",
+//   storage,
+// };
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({ auth: authReducer });
+
+// const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = createStore(reducers, composeEnhancers());
