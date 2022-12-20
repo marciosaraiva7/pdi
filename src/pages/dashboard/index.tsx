@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import parseJwt from "../../utils/decoder";
+import useDecoder from "../../hooks/useDecoder";
 
 const token = localStorage.getItem("token");
 
-let decode = parseJwt(token ?? "")
+let decode = useDecoder(token ?? "")
 
 console.log(decode.name)
 
