@@ -26,14 +26,14 @@ const Router = () => {
  const LoginPage = <Login />
 
  //Auth Routes
- const HomePage = <PrivateRoute redirectTo="/login" ><Dashboard /></PrivateRoute>
- const ProfilePage = <PrivateRoute redirectTo="/login" ><Profile /></PrivateRoute>
+ const HomePage = <PrivateRoute redirectTo="/" ><Dashboard /></PrivateRoute>
+ const ProfilePage = <PrivateRoute redirectTo="/" ><Profile /></PrivateRoute>
 
  return (
   <BrowserRouter>
    <Routes>
     {/* Default Routes */}
-    <Route path="/login" element={LoginPage} />
+    <Route path="/" element={LoginPage} />
     {/* Private Routes */}
     <Route path="/home" element={HomePage} />
     <Route path="/profile" element={ProfilePage} />

@@ -11,7 +11,7 @@ const Profile = () => {
  function handleLogout() {
   dispatch(signout())
   localStorage.removeItem("token")
-  navigate("/login", { replace: true })
+  navigate("/", { replace: true })
  }
 
  return (
