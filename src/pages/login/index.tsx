@@ -30,28 +30,39 @@ const Login = () => {
 
     event.preventDefault();
 
-    const response = await fetch(baseURL + '/auth/login', {
-      method: 'POST',
-      headers: requestHeaders,
-      body: JSON.stringify({
-        email,
-        password
+    try {
+      const response = await fetch(baseURL + '/auth/login', {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify({
+          email,
+          password
+        })
       })
-    })
 
-    const data = await response.json();
-    const objectData = {
-      status: response.status,
-      body: data
+      const data = await response.json();
+      const objectData = {
+        status: response.status,
+        body: data
+      }
+      if (objectData.status === 200) {
+        localStorage.setItem("token", objectData.body.token)
+        if(localStorage.getItem("token")){navigate("/home");}
+      } else {
+        setErrorMessage(objectData.body.message)
+      }
+
     }
-    if (objectData.status === 200) {
-      dispatch(signin());
-      localStorage.setItem("token", objectData.body.token)
-      navigate("/Dashboard");
-    } else {
-      setErrorMessage(objectData.body.message)
+    catch (err) {
+      console.log(err)
     }
-    setLoading(false)
+    finally {
+      setLoading(false)
+    }
+
+
+
+
   }
 
   const handleDisable = () => {
