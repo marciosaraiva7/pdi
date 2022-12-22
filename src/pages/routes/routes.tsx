@@ -12,9 +12,9 @@ interface PrivateProps {
 }
 
 const Router = () => {
-
- const token = localStorage.getItem("token")
  
+ const token = localStorage.getItem("token");
+
 
  const PrivateRoute = ({ children, redirectTo }: PrivateProps) => {
   return token ? children : <Navigate to={redirectTo} />
@@ -24,8 +24,8 @@ const Router = () => {
  const LoginPage = <Login />
 
  //Auth Routes
- const DashboardPage = <PrivateRoute redirectTo="/" ><Dashboard /></PrivateRoute>
- const ProfilePage = <PrivateRoute redirectTo="/" ><Profile /></PrivateRoute>
+ const DashboardPage = <PrivateRoute redirectTo="/Dashboard" ><Dashboard /></PrivateRoute>
+ const ProfilePage = <PrivateRoute redirectTo="/Profile" ><Profile /></PrivateRoute>
 
  return (
   <BrowserRouter>
@@ -33,7 +33,7 @@ const Router = () => {
     {/* Default Routes */}
     <Route path="/" element={LoginPage} />
     {/* Private Routes */}
-    <Route index path="/Dashboard" element={DashboardPage} />
+    <Route path="/Dashboard" element={DashboardPage} />
     <Route path="/Profile" element={ProfilePage} />
 
    </Routes>
