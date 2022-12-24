@@ -8,7 +8,9 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  margin-bottom: 5rem;
+`;
 
 export const ContainerCredentials = styled.div`
   width: 90% form {
@@ -48,12 +50,11 @@ export const ButtonLogin = styled.button`
   font-size: 19px;
   transition: 0.3s ease-in-out 0s;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
-  background-color: ${props => props.theme.colors.brand.pure};
+  background-color: ${(props) => props.theme.colors.brand.pure};
 
   :hover:not([disabled]) {
-    
-    background-color: ${props => props.theme.colors.brand.light};
-    color: ${props => props.theme.colors.brand.pure};
+    background-color: ${(props) => props.theme.colors.brand.light};
+    color: ${(props) => props.theme.colors.brand.pure};
     cursor: pointer;
     box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
   }

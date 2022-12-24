@@ -46,6 +46,7 @@ const Login = () => {
         window.localStorage.setItem("token", objectData.body.token)
 
       } else {
+        setLoading(false);
         return setErrorMessage(objectData.body.message)
       }
       window.location.reload();
@@ -78,20 +79,20 @@ const Login = () => {
     <Container>
       <Title>Login</Title>
       <ContainerCredentials>
-        <form onSubmit={handleLogin}>
+        {loading ? (<RingLoader
+          color={'white'}
+          loading={loading}
+          cssOverride={override}
+          size={48}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />) : (<form onSubmit={handleLogin}>
           <Input value={email} type='text' placeholder='email' onChange={(e) => setEmail(e.target.value)} />
           <Input value={password} type='text' placeholder='senha' onChange={(e) => setPassword(e.target.value)} />
           <ButtonLogin type="submit" disabled={handleDisable()}>
-            {loading ? (<RingLoader
-              color={'blue'}
-              loading={loading}
-              cssOverride={override}
-              size={14}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />) : ('Entrar')}</ButtonLogin>
+            Entrar</ButtonLogin>
           <TextFeedback>{errorMessage}</TextFeedback>
-        </form>
+        </form>)}
       </ContainerCredentials>
     </Container>
 
