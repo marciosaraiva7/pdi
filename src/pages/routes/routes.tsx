@@ -22,10 +22,10 @@ const Router = () => {
   return !isLogged ? children : <Navigate to={redirectTo} />
  }
 
- //Default Routes
+ //Public Routes
  const LoginPage = <PublicRoute redirectTo="/home" ><Login /></PublicRoute>
 
- //Auth Routes
+ //Private Routes
  const HomePage = <PrivateRoute redirectTo="/" ><Dashboard /></PrivateRoute>
  const ProfilePage = <PrivateRoute redirectTo="/" ><Profile /></PrivateRoute>
 
