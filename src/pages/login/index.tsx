@@ -54,9 +54,6 @@ const Login = () => {
     catch (err) {
       console.log(err)
     }
-    finally {
-      setLoading(false)
-    }
 
 
 
@@ -67,7 +64,7 @@ const Login = () => {
     if (errorMessage) {
       setErrorMessage('');
     }
-  }, [email,password])
+  }, [email, password])
 
   const handleDisable = () => {
     if (!email || !password || loading) {
