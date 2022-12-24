@@ -10,8 +10,8 @@ const Profile = () => {
 
  function handleLogout() {
   dispatch(signout())
-  localStorage.removeItem("token")
-  navigate("/", { replace: true })
+  window.localStorage.removeItem("token")
+  window.location.reload();
  }
 
  return (

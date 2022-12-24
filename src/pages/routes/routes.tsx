@@ -6,7 +6,7 @@ import Login from "../login";
 //Auth Pages
 import Dashboard from "../dashboard";
 import Profile from "../profile";
-interface PrivateProps {
+interface RouteProps {
  children: any,
  redirectTo: any,
 }
@@ -15,15 +15,15 @@ const Router = () => {
 
  const isLogged = window.localStorage.getItem("token");
 
-
-
-
- const PrivateRoute = ({ children, redirectTo }: PrivateProps) => {
+ const PrivateRoute = ({ children, redirectTo }: RouteProps) => {
   return isLogged ? children : <Navigate to={redirectTo} />
+ }
+ const PublicRoute = ({ children, redirectTo }: RouteProps) => {
+  return !isLogged ? children : <Navigate to={redirectTo} />
  }
 
  //Default Routes
- const LoginPage = <Login />
+ const LoginPage = <PublicRoute redirectTo="/home" ><Login /></PublicRoute>
 
  //Auth Routes
  const HomePage = <PrivateRoute redirectTo="/" ><Dashboard /></PrivateRoute>

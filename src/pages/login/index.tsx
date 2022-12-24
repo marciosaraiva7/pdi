@@ -1,8 +1,4 @@
-import { CSSProperties, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { signin } from "../../store/auth/actions";
-
+import { CSSProperties, useState, useEffect } from "react";
 //styles
 import { ButtonLogin, Container, ContainerCredentials, Input, TextFeedback, Title } from "./styles";
 import RingLoader from "react-spinners/RingLoader";
@@ -13,8 +9,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const requestHeaders: HeadersInit = new Headers();
   requestHeaders.set('Content-Type', 'application/json');
 
@@ -23,6 +17,9 @@ const Login = () => {
     margin: "0 auto",
     borderColor: "red",
   };
+
+
+
 
   async function handleLogin(event: { preventDefault: () => void; }) {
 
@@ -46,11 +43,12 @@ const Login = () => {
         body: data
       }
       if (objectData.status === 200) {
-        localStorage.setItem("token", objectData.body.token)
-        if(localStorage.getItem("token")){navigate("/home");}
+        window.localStorage.setItem("token", objectData.body.token)
+
       } else {
-        setErrorMessage(objectData.body.message)
+        return setErrorMessage(objectData.body.message)
       }
+      window.location.reload();
 
     }
     catch (err) {
@@ -64,6 +62,12 @@ const Login = () => {
 
 
   }
+
+  useEffect(() => {
+    if (errorMessage) {
+      setErrorMessage('');
+    }
+  }, [email,password])
 
   const handleDisable = () => {
     if (!email || !password || loading) {
