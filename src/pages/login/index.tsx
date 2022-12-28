@@ -74,7 +74,7 @@ const Login = () => {
   }
 
   return (
-    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px' }}>
+    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', height: '100%' }}>
       <Container>
         <GitHubCard />
       </Container>
