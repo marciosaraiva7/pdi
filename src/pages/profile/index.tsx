@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { signout } from "../../store/auth/actions";
+import { Button, Container } from "@nextui-org/react";
 
 
 
@@ -17,7 +18,9 @@ const Profile = () => {
  return (
   <div>
    {/* <h1>Esse é o perfil do {username}</h1> */}
-   <button onClick={handleLogout}>logout</button>
+   <Container>
+    <Button bordered color="error" auto onPress={handleLogout}>Sair</Button>
+   </Container>
   </div>
  )
 }

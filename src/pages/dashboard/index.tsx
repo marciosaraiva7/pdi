@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useDecoder from "../../hooks/useDecoder";
-import { Switch, useTheme, Text } from '@nextui-org/react';
+import { Switch, useTheme, Text, Button, Container, Spacer } from '@nextui-org/react';
 import { useTheme as useNextTheme } from 'next-themes'
 
 const Dashboard = () => {
@@ -31,8 +31,12 @@ const Dashboard = () => {
         checked={isDark}
         onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
       />
+      <Spacer />
       <Text h1>Olá,{name}</Text>
-      <button onClick={() => toProfile()}>to Profile</button>
+      <Spacer y={2} />
+      <Container>
+      <Button onPress={() => toProfile()}>Perfil</Button>
+      </Container>
     </div>
   );
 };

@@ -92,7 +92,7 @@ const Login = () => {
             }}
             weight="bold"
           >Login</Text>
-          <Text h5 css={{ color: "$secundaryText", textAlign: 'left' }}>Insira suas credenciais para acessar o painel</Text>
+          <Text h5 css={{ color: "$neutralLowLight", textAlign: 'left', fontWeight: '400' }}>Insira suas credenciais para acessar o painel</Text>
         </Container>
         <Container css={{
           display: "flex",
