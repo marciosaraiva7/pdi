@@ -41,7 +41,7 @@ const Login = () => {
       }
       if (objectData.status === 200) {
         window.localStorage.setItem("token", objectData.body.token);
-        navigate('/home')
+        navigate(0);
         return 
 
 

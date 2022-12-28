@@ -11,7 +11,7 @@ const Profile = () => {
  function handleLogout() {
   dispatch(signout())
   window.localStorage.removeItem("token")
-  window.location.href = "/";
+  navigate(0)
  }
 
  return (
