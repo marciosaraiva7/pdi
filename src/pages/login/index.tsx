@@ -122,7 +122,7 @@ const Login = () => {
             shadow
             size="lg"
             disabled={handleDisable()}
-            onClick={() => handleLogin()}
+            onPress={() => handleLogin()}
             css={{ background: "$brandPure" }}>
             {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : "Entrar"}
           </Button>
