@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from "react";
 
 import { Text, Button, Loading, Container, Input, Tooltip, Spacer } from '@nextui-org/react';
 import { GitHubCard } from "../../components/githubCard";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -12,6 +13,8 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const requestHeaders: HeadersInit = new Headers();
   requestHeaders.set('Content-Type', 'application/json');
+
+  const navigate = useNavigate();
 
 
 
@@ -38,8 +41,8 @@ const Login = () => {
       }
       if (objectData.status === 200) {
         window.localStorage.setItem("token", objectData.body.token);
-        window.location.href = "/home";
-        return
+        navigate('/home')
+        return 
 
 
       }
@@ -76,20 +79,20 @@ const Login = () => {
         <GitHubCard />
       </Container>
       <Container css={{ width: '100%', padding: '0px' }}>
-      <Container css={{
-        padding: '0px',
-        marginBottom: '$15'
-        }}> 
-        <Text
-          h1
-          size={60}
-          css={{
-            textGradient: "45deg, $blue600 -20%, $pink600 50%",
-            textAlign: 'left',
-          }}
-          weight="bold"
-        >Login</Text>
-        <Text h5 css={{ color: "$secundaryText", textAlign: 'left'}}>Insira suas credenciais para acessar o painel</Text>
+        <Container css={{
+          padding: '0px',
+          marginBottom: '$15'
+        }}>
+          <Text
+            h1
+            size={60}
+            css={{
+              textGradient: "45deg, $blue600 -20%, $pink600 50%",
+              textAlign: 'left',
+            }}
+            weight="bold"
+          >Login</Text>
+          <Text h5 css={{ color: "$secundaryText", textAlign: 'left' }}>Insira suas credenciais para acessar o painel</Text>
         </Container>
         <Container css={{
           display: "flex",
@@ -97,7 +100,7 @@ const Login = () => {
           padding: '0px',
           gap: '$10'
         }}>
-          
+
           <Input
             clearable
             bordered
@@ -106,7 +109,7 @@ const Login = () => {
             labelPlaceholder='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            css={{marginBottom:'$5'}}
+            css={{ marginBottom: '$5' }}
           />
           <Input.Password
             clearable
