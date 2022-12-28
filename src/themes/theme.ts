@@ -7,7 +7,7 @@ export const lightTheme = createTheme({
     colors: {
       background: "#F5F5F5",
       text: "#000000",
-      secundaryText:"#333333",
+      secundaryText: "#333333",
       // brand colors
       primaryLight: "$green200",
       primaryLightHover: "$green300",
@@ -54,7 +54,9 @@ export const lightTheme = createTheme({
       feedbackSuccessDark: "#205A24",
     },
     space: {},
-    fonts: {},
+    fonts: {
+      sans: "Inter, sans-serif;",
+    },
   },
 });
 
@@ -64,7 +66,7 @@ export const darkTheme = createTheme({
     colors: {
       background: "#000000",
       text: "#FFFFFF",
-      secundaryText:"#E0E0E0",
+      secundaryText: "#E0E0E0",
       // brand colors
       primaryLight: "$green200",
       primaryLightHover: "$green300",
@@ -111,6 +113,8 @@ export const darkTheme = createTheme({
       feedbackSuccessDark: "#205A24",
     },
     space: {},
-    fonts: {},
+    fonts: {
+      sans: "Inter, sans-serif;",
+    },
   },
 });

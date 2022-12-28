@@ -42,7 +42,7 @@ const Login = () => {
       if (objectData.status === 200) {
         window.localStorage.setItem("token", objectData.body.token);
         navigate(0);
-        return 
+        return
 
 
       }
@@ -74,7 +74,7 @@ const Login = () => {
   }
 
   return (
-    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', height: '100%' }}>
+    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', justifyContent: 'center', alignItems: 'center' }}>
       <Container>
         <GitHubCard />
       </Container>
