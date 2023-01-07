@@ -6,6 +6,8 @@ import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { lightTheme, darkTheme } from './themes/theme';
 
+
+
 function App() {
 
   return (

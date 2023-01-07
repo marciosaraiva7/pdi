@@ -6,6 +6,7 @@ import Login from "../login";
 //Auth Pages
 import Dashboard from "../dashboard";
 import Profile from "../profile";
+import Header from "../../components/header"
 interface RouteProps {
  children: any,
  redirectTo: any,
@@ -26,8 +27,8 @@ const Router = () => {
  const LoginPage = <PublicRoute redirectTo="/home" ><Login /></PublicRoute>
 
  //Private Routes
- const HomePage = <PrivateRoute redirectTo="/" ><Dashboard /></PrivateRoute>
- const ProfilePage = <PrivateRoute redirectTo="/" ><Profile /></PrivateRoute>
+ const HomePage = <PrivateRoute redirectTo="/" ><Header /><Dashboard /></PrivateRoute>
+ const ProfilePage = <PrivateRoute redirectTo="/" ><Header /><Profile /></PrivateRoute>
 
  return (
   <BrowserRouter>
