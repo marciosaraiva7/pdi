@@ -15,6 +15,7 @@ const Header = () => {
  const token = localStorage.getItem("token");
  const decode = useDecoder(token ?? "");
  const name = decode.name
+ const image = decode.image
 
  const navigate = useNavigate();
 
@@ -65,7 +66,7 @@ const Header = () => {
        color="primary"
        name={name}
        description="@marciosaraiva7"
-       src="https://github.com/marciosaraiva7.png"
+       src={image}
       />
      </Dropdown.Trigger>
      <Dropdown.Menu color="secondary" aria-label="User Actions">

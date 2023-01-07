@@ -55,7 +55,6 @@ const Register = () => {
         body: data,
       };
       if (objectData.status === 200) {
-        window.localStorage.setItem("token", objectData.body.token);
         navigate(0);
         return;
       }
