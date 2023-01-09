@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useDecoder from "../../hooks/useDecoder";
-import { Text, Button, Container, Spacer } from "@nextui-org/react";
-
+import { Text, Button, Spacer } from "@nextui-org/react";
+import { Container } from "./styles";
 const Dashboard = () => {
   const navigate = useNavigate();
 
