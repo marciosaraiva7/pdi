@@ -17,14 +17,14 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <Container>
       <Spacer />
       <Text h1>Olá,{name}</Text>
       <Spacer y={2} />
       <Container>
         <Button onPress={() => toProfile()}>Perfil</Button>
       </Container>
-    </div>
+    </Container>
   );
 };
 
