@@ -6,7 +6,7 @@ import Register from "../register";
 //Auth Pages
 import Dashboard from "../dashboard";
 import Profile from "../profile";
-import Header from "../../components/header";
+import Header from "../../components/header/header";
 interface RouteProps {
   children: any;
   redirectTo: any;

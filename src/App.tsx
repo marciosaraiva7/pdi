@@ -1,15 +1,12 @@
-import './App.css'
-import Router from './pages/routes/routes'
-import { Provider } from 'react-redux'
-import { store } from './store/index'
-import { NextUIProvider } from '@nextui-org/react';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { lightTheme, darkTheme } from './themes/theme';
-
-
+import "./App.css";
+import Router from "./pages/routes/routes";
+import { Provider } from "react-redux";
+import { store } from "./store/index";
+import { NextUIProvider, useTheme } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { lightTheme, darkTheme } from "./themes/theme";
 
 function App() {
-
   return (
     <Provider store={store}>
       <NextThemesProvider
@@ -17,7 +14,7 @@ function App() {
         attribute="class"
         value={{
           light: lightTheme.className,
-          dark: darkTheme.className
+          dark: darkTheme.className,
         }}
       >
         <NextUIProvider>
@@ -25,7 +22,7 @@ function App() {
         </NextUIProvider>
       </NextThemesProvider>
     </Provider>
-  )
+  );
 }
 
-export default App
+export default App;
