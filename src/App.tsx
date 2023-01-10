@@ -9,18 +9,18 @@ import { lightTheme, darkTheme } from "./themes/theme";
 function App() {
   return (
     <Provider store={store}>
-      <NextThemesProvider
-        defaultTheme="system"
-        attribute="class"
-        value={{
-          light: lightTheme.className,
-          dark: darkTheme.className,
-        }}
-      >
-        <NextUIProvider>
+      <NextUIProvider>
+        <NextThemesProvider
+          defaultTheme="system"
+          attribute="class"
+          value={{
+            light: lightTheme.className,
+            dark: darkTheme.className,
+          }}
+        >
           <Router />
-        </NextUIProvider>
-      </NextThemesProvider>
+        </NextThemesProvider>
+      </NextUIProvider>
     </Provider>
   );
 }
