@@ -18,9 +18,9 @@ function App() {
           dark: darkTheme.className,
         }}
       >
-        <NextUIProvider theme={theme}>
+       
           <Router />
-        </NextUIProvider>
+          
       </NextThemesProvider>
     </Provider>
   );
