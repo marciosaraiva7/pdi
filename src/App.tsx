@@ -7,20 +7,21 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { lightTheme, darkTheme } from "./themes/theme";
 
 function App() {
+  const { isDark, type,theme } = useTheme();
   return (
     <Provider store={store}>
-      <NextUIProvider>
-        <NextThemesProvider
-          defaultTheme="system"
-          attribute="class"
-          value={{
-            light: lightTheme.className,
-            dark: darkTheme.className,
-          }}
-        >
+      <NextThemesProvider
+        defaultTheme="system"
+        attribute="class"
+        value={{
+          light: lightTheme.className,
+          dark: darkTheme.className,
+        }}
+      >
+        <NextUIProvider theme={theme}>
           <Router />
-        </NextThemesProvider>
-      </NextUIProvider>
+        </NextUIProvider>
+      </NextThemesProvider>
     </Provider>
   );
 }
