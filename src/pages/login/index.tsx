@@ -3,6 +3,7 @@ import React, { useState, useEffect, } from "react";
 import { Text, Button, Loading, Container, Input, Tooltip, Spacer } from '@nextui-org/react';
 import { GitHubCard } from "../../components/githubCard";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -53,6 +54,7 @@ const Login = () => {
       console.log(err)
     }
   }
+
 
   useEffect(() => {
     if (errorMessage) {
@@ -129,6 +131,9 @@ const Login = () => {
             css={{ background: "$brandPure" }}>
             {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : "Entrar"}
           </Button>
+          <Link to={'/register'}>
+            Registrar
+          </Link>
           <Container css={{ display: 'flex', justifyContent: 'center' }}>
             {errorMessage && <Tooltip content="Tente novamente" color="error">
               <Button flat auto color="error" onClick={() => clearCredentials()}>{errorMessage}</Button>
