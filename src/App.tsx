@@ -3,6 +3,7 @@ import Router from "./pages/routes/routes";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { NextUIProvider } from "@nextui-org/react"
 import { lightTheme, darkTheme } from "./themes/theme";
 
 function App() {
@@ -17,7 +18,10 @@ function App() {
           dark: darkTheme.className,
         }}
       >
-        <Router />
+        <NextUIProvider>
+
+          <Router />
+        </NextUIProvider>
       </NextThemesProvider>
     </Provider>
   );

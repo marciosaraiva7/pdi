@@ -1,9 +1,10 @@
 import React, { useState, useEffect, } from "react";
 
-import { Text, Button, Loading, Container, Input, Tooltip, Spacer } from '@nextui-org/react';
+import { Text, Button, Loading, Container, Input, Tooltip } from '@nextui-org/react';
+import { ButtonLink } from "./styles";
 import { GitHubCard } from "../../components/githubCard";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 
 
 const Login = () => {
@@ -89,7 +90,6 @@ const Login = () => {
             h1
             size={60}
             css={{
-              textGradient: "45deg, $blue600 -20%, $pink600 50%",
               textAlign: 'left',
             }}
             weight="bold"
@@ -131,9 +131,9 @@ const Login = () => {
             css={{ background: "$brandPure" }}>
             {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : "Entrar"}
           </Button>
-          <Link to={'/register'}>
+          <ButtonLink to={'/register'}>
             Registrar
-          </Link>
+          </ButtonLink>
           <Container css={{ display: 'flex', justifyContent: 'center' }}>
             {errorMessage && <Tooltip content="Tente novamente" color="error">
               <Button flat auto color="error" onClick={() => clearCredentials()}>{errorMessage}</Button>

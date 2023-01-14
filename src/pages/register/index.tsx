@@ -137,7 +137,6 @@ const onSelectFile = (e: any) => {
             h1
             size={60}
             css={{
-              textGradient: "45deg, $blue600 -20%, $pink600 50%",
               textAlign: "left",
             }}
             weight="bold"
