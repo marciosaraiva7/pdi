@@ -53,9 +53,9 @@ const Router = () => {
       <Routes>
         {/* Default Routes */}
         <Route path="/register" element={RegisterPage} />
-        <Route path="/" element={LoginPage} />
+        <Route path="/" index element={LoginPage} />
         {/* Private Routes */}
-        <Route path="/home" element={HomePage} />
+        <Route path="/home" index element={HomePage} />
         <Route path="/profile" element={ProfilePage} />
       </Routes>
     </BrowserRouter>
