@@ -8,15 +8,17 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
-import { useNavigate } from "react-router-dom";
-import { Container } from "./styles";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, ButtonLink } from "./styles";
 
 //hooks
+import { useDispatch } from 'react-redux';
 import useDecoder from "../../hooks/useDecoder";
 
 //icons
 import { SunIcon } from "../../assets/icons/SunIcon";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
+import { signout } from "../../store/auth/actions";
 
 const Header = () => {
   const { setTheme } = useNextTheme();
@@ -31,6 +33,13 @@ const Header = () => {
 
   function toProfile() {
     navigate("/profile");
+  }
+  const dispatch = useDispatch()
+ 
+  function handleLogout() {
+   dispatch(signout())
+   window.localStorage.removeItem("token")
+   navigate(0)
   }
 
   return (
@@ -71,13 +80,7 @@ const Header = () => {
                 marcio@example.com
               </Text>
             </Dropdown.Item>
-            <Dropdown.Item key="settings" withDivider>
-              <Button
-                css={{ backgroundColor: "transparent", color: "$primary" }}
-                onPress={() => toProfile()}
-              >
-                Meu Perfil
-              </Button>
+            <Dropdown.Item key="settings" withDivider ><ButtonLink to={'/profile'}>Meu Perfil</ButtonLink>
             </Dropdown.Item>
             <Dropdown.Item key="team_settings">Meus Itens</Dropdown.Item>
             <Dropdown.Item key="configurations">Configurations</Dropdown.Item>

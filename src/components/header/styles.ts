@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -14,4 +15,10 @@ export const Container = styled.div`
   border-bottom-style: solid;
   width: 100%;
   height: 10vh;
+`;
+
+
+
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
 `;
