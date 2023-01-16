@@ -3,7 +3,7 @@ import React, { useState, useEffect, } from "react";
 import { Text, Button, Loading, Container, Input, Tooltip } from '@nextui-org/react';
 import { ButtonLink } from "./styles";
 import { GitHubCard } from "../../components/githubCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 
 
@@ -15,6 +15,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const requestHeaders: HeadersInit = new Headers();
   requestHeaders.set('Content-Type', 'application/json');
+  const buttonLable = "Entrar";
 
   const navigate = useNavigate();
 
@@ -128,8 +129,8 @@ const Login = () => {
             size="lg"
             disabled={handleDisable()}
             onPress={() => handleLogin()}
-            css={{ background: "$brandPure" }}>
-            {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : "Entrar"}
+            css={{ background: "$brandPure", fontFamily: 'Inter' }}>
+            {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : buttonLable}
           </Button>
           <ButtonLink to={'/register'}>
             Registrar

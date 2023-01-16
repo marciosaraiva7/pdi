@@ -11,7 +11,7 @@ export const Container = styled.div`
   left: 0;
   right: 0;
   margin: 0;
-  border-bottom: 2px;
+  border-bottom: 1px;
   border-bottom-style: solid;
   width: 100%;
   height: 10vh;
@@ -34,4 +34,5 @@ export const ButtonLogout = styled.button`
   padding: 0;
   width: 100%;
   text-align: left;
+  cursor: pointer;
 `;

@@ -211,7 +211,7 @@ const onSelectFile = (e: any) => {
             size="sm"
             onPress={(e) => handleUploadClick(e)}
             
-            css={{ background: "$brandPure" }}
+            css={{ background: "$brandPure", fontFamily: 'Inter' }}
           > inserir foto </Button>
           {photo &&  <img src={preview} /> }
           <Button
@@ -220,7 +220,7 @@ const onSelectFile = (e: any) => {
             size="lg"
             disabled={handleDisable()}
             onPress={() => handleRegister()}
-             css={{ background: "$brandPure" }}
+             css={{ background: "$brandPure", fontFamily: 'Inter' }}
           >
             {loading ? (
               <Loading type="spinner" color="currentColor" size="sm" />
