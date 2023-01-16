@@ -5,14 +5,13 @@ import {
   User,
   Switch,
   useTheme,
-  Button,
 } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, ButtonLink } from "./styles";
+import { Container, ButtonLink, ButtonLogout } from "./styles";
 
 //hooks
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import useDecoder from "../../hooks/useDecoder";
 
 //icons
@@ -34,12 +33,12 @@ const Header = () => {
   function toProfile() {
     navigate("/profile");
   }
-  const dispatch = useDispatch()
- 
+  const dispatch = useDispatch();
+
   function handleLogout() {
-   dispatch(signout())
-   window.localStorage.removeItem("token")
-   navigate(0)
+    dispatch(signout());
+    window.localStorage.removeItem("token");
+    navigate(0);
   }
 
   return (
@@ -80,7 +79,8 @@ const Header = () => {
                 marcio@example.com
               </Text>
             </Dropdown.Item>
-            <Dropdown.Item key="settings" withDivider ><ButtonLink to={'/profile'}>Meu Perfil</ButtonLink>
+            <Dropdown.Item key="settings" withDivider>
+              <ButtonLink to={"/profile"}>Meu Perfil</ButtonLink>
             </Dropdown.Item>
             <Dropdown.Item key="team_settings">Meus Itens</Dropdown.Item>
             <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
@@ -88,7 +88,7 @@ const Header = () => {
               Help & Feedback
             </Dropdown.Item>
             <Dropdown.Item key="logout" color="error" withDivider>
-              Log Out
+              <ButtonLogout onClick={() => handleLogout()}>Log Out</ButtonLogout>
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

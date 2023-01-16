@@ -22,3 +22,16 @@ export const Container = styled.div`
 export const ButtonLink = styled(Link)`
   text-decoration: none;
 `;
+
+export const ButtonLogout = styled.button`
+  color: white;
+  border-radius: 12px;
+  transition: all 0.3s;
+  background: transparent;
+  border: none;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+`;
