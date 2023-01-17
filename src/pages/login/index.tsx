@@ -3,7 +3,7 @@ import React, { useState, useEffect, } from "react";
 import { Text, Button, Loading, Container, Input, Tooltip } from '@nextui-org/react';
 import { ButtonLink } from "./styles";
 import { GitHubCard } from "../../components/githubCard";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -78,7 +78,7 @@ const Login = () => {
   }
 
   return (
-    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', justifyContent: 'center', alignItems: 'center' }}>
+    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }}>
       <Container>
         <GitHubCard />
       </Container>

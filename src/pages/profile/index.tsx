@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signout } from "../../store/auth/actions";
-import { Button, Container } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { Container } from "./styles";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -38,15 +39,14 @@ const Profile = () => {
     }
   }
   return (
-    <div>
-      {/* <h1>Esse é o perfil do {username}</h1> */}
+
       <Container>
         <Button bordered color="success" auto onPress={checkToken}>
           Checar token
         </Button>
         <p>{message}</p>
       </Container>
-    </div>
+
   );
 };
 

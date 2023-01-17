@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useDecoder from "../../hooks/useDecoder";
 import { Button, Text } from "@nextui-org/react";
-import { Container, Title } from "./styles";
+import { Container, ContainerText, SubTitle, Title } from "./styles";
 import Cards from "../../components/cards";
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -18,20 +18,14 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Title>Olá,{name}</Title>
-      <Text
-        h5
-        css={{
-          color: "$neutralLowLight",
-          textAlign: "left",
-          fontWeight: "400",
-        }}
-      >
-        Esses são os clientes atuais
-      </Text>
-      {/* <Container>
-        <Button onPress={() => toProfile()}>Perfil</Button>
-      </Container> */}
+      <ContainerText>
+        <Title>Olá,{name}</Title>
+        <SubTitle>
+          Esses são os clientes atuais
+        </SubTitle>
+      </ContainerText>
+      <Cards />
+      <Cards />
       <Cards />
     </Container>
   );

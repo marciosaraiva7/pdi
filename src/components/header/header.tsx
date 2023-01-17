@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, ButtonLink, ButtonLogout } from "./styles";
 
 //hooks
@@ -43,10 +43,9 @@ const Header = () => {
   return (
     <Container>
       <Text h1>PDI</Text>
-
-      <Grid >
+      <div>
         <Dropdown placement="bottom-left">
-          <Dropdown.Trigger css={{marginRight: "50px"}}>
+          <Dropdown.Trigger css={{ marginRight: "50px" }}>
             <User
               bordered
               as="button"
@@ -70,9 +69,9 @@ const Header = () => {
               <ButtonLink to={"/profile"}>Meu Perfil</ButtonLink>
             </Dropdown.Item>
             <Dropdown.Item key="team_settings">Usuários</Dropdown.Item>
-            <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
+            <Dropdown.Item key="configurations">Configurações</Dropdown.Item>
             <Dropdown.Item key="help_and_feedback" withDivider>
-              Help & Feedback
+              Ajuda
             </Dropdown.Item>
             <Dropdown.Item key="logout" color="error" withDivider>
               <ButtonLogout onClick={() => handleLogout()}>
@@ -91,7 +90,7 @@ const Header = () => {
           checked={isDark}
           onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
         />
-      </Grid>
+      </div>
     </Container>
   );
 };
