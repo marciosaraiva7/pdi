@@ -1,11 +1,11 @@
 import { Types } from "./types";
 
 interface StateUser {
-  isLogged: boolean;
+  token: string;
 }
 
 const initialState: StateUser = {
-  isLogged: false,
+  token: "",
 };
 
 export default function reducer(state: StateUser = initialState, action: any) {
@@ -13,13 +13,12 @@ export default function reducer(state: StateUser = initialState, action: any) {
     case Types.SIGNIN:
       return {
         ...state,
-        isLogged: true,
+        token: action.payload,
       };
     case Types.SIGNOUT:
       return {
         ...state,
-        name: "",
-        isLogged: false,
+        token: "",
       };
     default:
       return {
@@ -29,5 +28,4 @@ export default function reducer(state: StateUser = initialState, action: any) {
 }
 
 export const username = (state: { auth: { name: string } }) => state.auth.name;
-export const isLogged = (state: { auth: {isLogged: boolean }}) => state.auth.isLogged;
-
+export const token = (state: { auth: { token: string } }) => state.auth.token;
