@@ -1,12 +1,5 @@
-import {
-  Text,
-  Grid,
-  Dropdown,
-  User,
-  Switch,
-  useTheme,
-} from "@nextui-org/react";
-import { useTheme as useNextTheme } from "next-themes";
+import React, { useState, useEffect } from "react";
+import { Text, Dropdown, User, Switch, useTheme } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { Container, ButtonLink, ButtonLogout } from "./styles";
 
@@ -20,8 +13,25 @@ import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { signout } from "../../store/auth/actions";
 
 const Header = () => {
-  const { setTheme } = useNextTheme();
-  const { isDark, type } = useTheme();
+  //styled
+  const [theme, setTheme] = useState("light");
+  const isDarkTheme = theme === "dark";
+  const toggleTheme = () => {
+    const updatedTheme = isDarkTheme ? "light" : "dark";
+    setTheme(updatedTheme);
+    localStorage.setItem("theme", updatedTheme);
+  };
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
+      setTheme(savedTheme);
+    } else if (prefersDark) {
+      setTheme("dark");
+    }
+  }, []);
 
   const token = localStorage.getItem("token");
   const user = useDecoder(token ?? "");
@@ -87,8 +97,8 @@ const Header = () => {
           animated
           iconOff={<SunIcon filled />}
           iconOn={<MoonIcon filled />}
-          checked={isDark}
-          onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
+          checked={isDarkTheme}
+          onChange={toggleTheme}
         />
       </div>
     </Container>
