@@ -79,7 +79,7 @@ export const ButtonLink = styled(Link)`
   }
 `;
 
-export const ButtonLogin = styled.button`
+export const ButtonRegister = styled.button`
   background: #007aff;
   color: #f1f1f1;
   height: 3rem;

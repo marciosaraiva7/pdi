@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {  Button, Loading,  Tooltip } from "@nextui-org/react";
+import { Button, Loading, Tooltip } from "@nextui-org/react";
 import {
   ButtonLink,
   Container,
@@ -8,7 +8,9 @@ import {
   ContainerTitle,
   Subtitle,
   Title,
-  Input
+  Input,
+  ButtonLogin,
+  ContainerButtonLink,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 
@@ -80,24 +82,30 @@ const Login = () => {
         <Subtitle>Insira suas credenciais para acessar o painel</Subtitle>
       </ContainerTitle>
       <ContainerCredentials>
-        <Input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <Button
+        <Input
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <ButtonLogin
           type="submit"
-          shadow
-          size="lg"
           disabled={handleDisable()}
-          onPress={() => handleLogin()}
-          css={{ background: "$brandPure", fontFamily: "Inter" }}
+          onClick={() => handleLogin()}
         >
           {loading ? (
             <Loading type="spinner" color="currentColor" size="sm" />
           ) : (
             buttonLable
           )}
-        </Button>
-        <ButtonLink to={"/register"}>Registrar</ButtonLink>
-
+        </ButtonLogin>
+        <ContainerButtonLink>
+          <ButtonLink to={"/register"}>Registrar</ButtonLink>
+        </ContainerButtonLink>
         {errorMessage && (
           <Tooltip content="Tente novamente" color="error">
             <Button flat auto color="error" onClick={() => clearCredentials()}>

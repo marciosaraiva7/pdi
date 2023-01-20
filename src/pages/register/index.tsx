@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 
+import { Button, Loading, Tooltip, Input } from "@nextui-org/react";
 import {
-  Text,
-  Button,
-  Loading,
   Container,
-  Tooltip,
-  Input,
-  Spacer,
-} from "@nextui-org/react";
-import { GitHubCard } from "../../components/githubCard";
+  ContainerTitle,
+  ContainerCredentials,
+  Subtitle,
+  Title,
+  ButtonRegister,
+} from "./styles";
 import { useNavigate } from "react-router-dom";
 import { PressEvent } from "@react-types/shared";
-import { fileURLToPath } from "url";
-import { read } from "fs";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   let baseURL = "https://pdi-backend-next.vercel.app/api";
@@ -21,17 +21,21 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  
+
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const requestHeaders: HeadersInit = new Headers();
   requestHeaders.set("Content-Type", "application/json");
   //image value
-  const [photo, setPhoto] = useState<File>()
+  const [photo, setPhoto] = useState<File>();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<any>();
 
+  const theme = localStorage.getItem("theme");
+
   const navigate = useNavigate();
+  const success = () => toast("Cadastro criado com sucesso");
+  const error = () => toast("Usuário ja existe, tente outra credencial");
 
   async function handleRegister() {
     setLoading(true);
@@ -45,7 +49,7 @@ const Register = () => {
           email,
           password,
           confirmpassword,
-          photo: preview
+          photo: preview,
         }),
       });
 
@@ -55,11 +59,11 @@ const Register = () => {
         body: data,
       };
       if (objectData.status === 200) {
-        navigate(0);
-        return;
+        success();
       }
       setLoading(false);
       setErrorMessage(objectData.body.message);
+      error();
     } catch (err) {
       console.log(err);
     }
@@ -73,28 +77,26 @@ const Register = () => {
 
   useEffect(() => {
     if (!photo) {
-        setPreview(undefined)
-        return
+      setPreview(undefined);
+      return;
     }
 
-    const objectUrl = URL.createObjectURL(photo)
-    setPreview(objectUrl)
-
+    const objectUrl = URL.createObjectURL(photo);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [photo])
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [photo]);
 
-const onSelectFile = (e: any) => {
-  if (!e.target.files || e.target.files.length === 0) {
-      setPhoto(undefined)
-      return
-  }
+  const onSelectFile = (e: any) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setPhoto(undefined);
+      return;
+    }
 
-  // I've kept this example simple by using the first image instead of multiple
-  setPhoto(e.target.files[0])
-}
-
+    // I've kept this example simple by using the first image instead of multiple
+    setPhoto(e.target.files[0]);
+  };
 
   const handleUploadClick = (e: PressEvent) => {
     // 👇 We redirect the click event onto the hidden input element
@@ -117,133 +119,92 @@ const onSelectFile = (e: any) => {
   };
 
   return (
-    <Container
-      css={{
-        display: "flex",
-        flexFlow: "row",
-        gap: "100px",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Container css={{ width: "100%", padding: "0px" }}>
-        <Container
-          css={{
-            padding: "0px",
-            marginBottom: "$15",
-          }}
+    <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={theme ? "dark" : "light"}
+      />
+      <ContainerTitle>
+        <Title>Cadastro</Title>
+        <Subtitle>Escreva seus dados para criar sua conta no web app</Subtitle>
+      </ContainerTitle>
+      <ContainerCredentials>
+        <Input
+          clearable
+          bordered
+          animated
+          color="primary"
+          labelPlaceholder="nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          css={{ marginBottom: "$5" }}
+        />
+        <Input
+          clearable
+          bordered
+          animated
+          color="primary"
+          labelPlaceholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          css={{ marginBottom: "$5" }}
+        />
+        <Input.Password
+          clearable
+          bordered
+          animated
+          color="primary"
+          labelPlaceholder="senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Input.Password
+          clearable
+          bordered
+          animated
+          color="primary"
+          labelPlaceholder="confirmar senha"
+          value={confirmpassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <input
+          type="file"
+          ref={inputRef}
+          onChange={onSelectFile}
+          style={{ display: "none" }}
+        />
+        <Button shadow size="sm" onPress={(e) => handleUploadClick(e)}>
+          {" "}
+          inserir foto{" "}
+        </Button>
+        {photo && <img src={preview} />}
+        <ButtonRegister
+          type="submit"
+          disabled={handleDisable()}
+          onClick={handleRegister}
         >
-          <Text
-            h1
-            size={60}
-            css={{
-              textAlign: "left",
-            }}
-            weight="bold"
-          >
-            Criar Usuário
-          </Text>
-          <Text
-            h5
-            css={{
-              color: "$neutralLowLight",
-              textAlign: "left",
-              fontWeight: "400",
-            }}
-          >
-            Insira suas credenciais para acessar o painel
-          </Text>
-        </Container>
-        <Container
-          css={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "0px",
-            gap: "$10",
-          }}
-        >
-          <Input
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder="nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            css={{ marginBottom: "$5" }}
-          />
-          <Input
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            css={{ marginBottom: "$5" }}
-          />
-          <Input.Password
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder="senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Input.Password
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder="confirmar senha"
-            value={confirmpassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <input
-            type="file"
-            ref={inputRef}
-            onChange={onSelectFile}
-            style={{display: 'none'}}
-          />
-          <Button
-            shadow
-            size="sm"
-            onPress={(e) => handleUploadClick(e)}
-            
-            css={{ background: "$brandPure", fontFamily: 'Inter' }}
-          > inserir foto </Button>
-          {photo &&  <img src={preview} /> }
-          <Button
-            type="submit"
-            shadow
-            size="lg"
-            disabled={handleDisable()}
-            onPress={() => handleRegister()}
-             css={{ background: "$brandPure", fontFamily: 'Inter' }}
-          >
-            {loading ? (
-              <Loading type="spinner" color="currentColor" size="sm" />
-            ) : (
-              "Cadastrar"
-            )}
-          </Button>
-          <Container css={{ display: "flex", justifyContent: "center" }}>
-            {errorMessage && (
-              <Tooltip content="Tente novamente" color="error">
-                <Button
-                  flat
-                  auto
-                  color="error"
-                  onClick={() => clearCredentials()}
-                >
-                  {errorMessage}
-                </Button>
-              </Tooltip>
-            )}
-          </Container>
-        </Container>
-      </Container>
+          {loading ? (
+            <Loading type="spinner" color="currentColor" size="sm" />
+          ) : (
+            "Cadastrar"
+          )}
+        </ButtonRegister>
+        {errorMessage && (
+          <Tooltip content="Tente novamente" color="error">
+            <Button flat auto color="error" onClick={() => clearCredentials()}>
+              {errorMessage}
+            </Button>
+          </Tooltip>
+        )}
+      </ContainerCredentials>
     </Container>
   );
 };
