@@ -1,8 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+
+
 export const GlobalStyles = createGlobalStyle`
+
   body {
-    background: ${({ theme }) => theme?.background};
-    color: ${({ theme }) => theme?.color};
+    background: ${props => props.theme.background};
+    color: ${props => props.theme.color};
     transition: background 0.2s ease-in, color 0.2s ease-in;
   }
 `;

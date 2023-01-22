@@ -1,16 +1,17 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import Router from "./pages/routes/routes";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 
 import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "./themes/theme";
+import { GlobalStyles, lightTheme, darkTheme } from "./themes/theme";
 
 function App() {
-  const isDarkTheme = localStorage.getItem("theme");
+  const theme = localStorage.getItem("theme");
 
   return (
-    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <>
         <GlobalStyles />
         <Provider store={store}>

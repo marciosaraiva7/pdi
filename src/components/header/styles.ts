@@ -41,3 +41,12 @@ export const ButtonLogout = styled.button`
   color: red;
   cursor: pointer;
 `;
+
+export const Title = styled.p`
+  margin: 0;
+  color: ${props => props.theme.color};
+  text-align: left;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+`;

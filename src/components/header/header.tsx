@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text, Dropdown, User, Switch, useTheme } from "@nextui-org/react";
+import { Text, Dropdown, User, Switch } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
-import { Container, ButtonLink, ButtonLogout } from "./styles";
+import { Container, ButtonLink, ButtonLogout, Title } from "./styles";
 
 //hooks
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import useDecoder from "../../hooks/useDecoder";
 import { SunIcon } from "../../assets/icons/SunIcon";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { signout } from "../../store/auth/actions";
+import { switchTheme } from "../../store/styles/actions";
 
 const Header = () => {
   //styled
@@ -19,7 +20,9 @@ const Header = () => {
   const toggleTheme = () => {
     const updatedTheme = isDarkTheme ? "light" : "dark";
     setTheme(updatedTheme);
+    dispatch(switchTheme(updatedTheme));
     localStorage.setItem("theme", updatedTheme);
+
   };
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -52,7 +55,7 @@ const Header = () => {
 
   return (
     <Container>
-      <Text h1>PDI</Text>
+      <Title>PDI</Title>
       <div>
         <Dropdown placement="bottom-left">
           <Dropdown.Trigger css={{ marginRight: "50px" }}>
@@ -100,6 +103,7 @@ const Header = () => {
           checked={isDarkTheme}
           onChange={toggleTheme}
         />
+        {theme}
       </div>
     </Container>
   );
