@@ -24,9 +24,6 @@ const Dashboard = () => {
           Esses são os clientes atuais
         </SubTitle>
       </ContainerText>
-      <Cards />
-      <Cards />
-      <Cards />
     </Container>
   );
 };

@@ -22,19 +22,7 @@ const Header = () => {
     setTheme(updatedTheme);
     dispatch(switchTheme(updatedTheme));
     localStorage.setItem("theme", updatedTheme);
-
   };
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme("dark");
-    }
-  }, []);
 
   const token = localStorage.getItem("token");
   const user = useDecoder(token ?? "");
@@ -56,55 +44,7 @@ const Header = () => {
   return (
     <Container>
       <Title>PDI</Title>
-      <div>
-        <Dropdown placement="bottom-left">
-          <Dropdown.Trigger css={{ marginRight: "50px" }}>
-            <User
-              bordered
-              as="button"
-              size="lg"
-              color="primary"
-              name={name}
-              description="@marciosaraiva7"
-              src="https://xsgames.co/randomusers/avatar.php?g=male"
-            />
-          </Dropdown.Trigger>
-          <Dropdown.Menu color="secondary" aria-label="User Actions">
-            <Dropdown.Item key="profile" css={{ height: "$18" }}>
-              <Text b color="inherit" css={{ d: "flex" }}>
-                Você entrou com
-              </Text>
-              <Text b color="inherit" css={{ d: "flex" }}>
-                {name}
-              </Text>
-            </Dropdown.Item>
-            <Dropdown.Item key="settings" withDivider>
-              <ButtonLink to={"/profile"}>Meu Perfil</ButtonLink>
-            </Dropdown.Item>
-            <Dropdown.Item key="team_settings">Usuários</Dropdown.Item>
-            <Dropdown.Item key="configurations">Configurações</Dropdown.Item>
-            <Dropdown.Item key="help_and_feedback" withDivider>
-              Ajuda
-            </Dropdown.Item>
-            <Dropdown.Item key="logout" color="error" withDivider>
-              <ButtonLogout onClick={() => handleLogout()}>
-                Log Out
-              </ButtonLogout>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-
-        <Switch
-          size="lg"
-          bordered
-          animated
-          iconOff={<SunIcon filled />}
-          iconOn={<MoonIcon filled />}
-          checked={isDarkTheme}
-          onChange={toggleTheme}
-        />
-        {theme}
-      </div>
+      <p>{name}</p>
     </Container>
   );
 };

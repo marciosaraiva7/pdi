@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 
-import { Button, Loading, Tooltip, Input } from "@nextui-org/react";
+import { Button, Loading } from "@nextui-org/react";
 import {
   Container,
   ContainerTitle,
@@ -8,6 +8,7 @@ import {
   Subtitle,
   Title,
   ButtonRegister,
+  Input,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { PressEvent } from "@react-types/shared";
@@ -34,8 +35,10 @@ const Register = () => {
   const theme = localStorage.getItem("theme");
 
   const navigate = useNavigate();
-  const success = () => toast("Cadastro criado com sucesso");
-  const error = () => toast("Usuário ja existe, tente outra credencial");
+  const success = (sucessMessage: string) =>
+    toast(sucessMessage, { containerId: "Sucess" });
+  const error = (errorMessage: string) =>
+    toast(errorMessage, { containerId: "Error" });
 
   async function handleRegister() {
     setLoading(true);
@@ -59,11 +62,11 @@ const Register = () => {
         body: data,
       };
       if (objectData.status === 200) {
-        success();
+        success("Cadastro criado com sucesso");
       }
       setLoading(false);
       setErrorMessage(objectData.body.message);
-      error();
+      error("Usuário ja existe, tente outra credencial");
     } catch (err) {
       console.log(err);
     }
@@ -121,6 +124,8 @@ const Register = () => {
   return (
     <Container>
       <ToastContainer
+        enableMultiContainer
+        containerId={"Sucess"}
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -132,55 +137,48 @@ const Register = () => {
         pauseOnHover
         theme={theme ? "dark" : "light"}
       />
+      <ToastContainer
+        enableMultiContainer
+        containerId={"Error"}
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        draggable
+        pauseOnHover
+        theme={theme ? "dark" : "light"}
+      />
       <ContainerTitle>
         <Title>Cadastro</Title>
         <Subtitle>Escreva seus dados para criar sua conta no web app</Subtitle>
       </ContainerTitle>
       <ContainerCredentials>
         <Input
-          clearable
-          bordered
-          animated
-          color="primary"
-          labelPlaceholder="nome"
+          placeholder="nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          css={{ marginBottom: "$5" }}
         />
         <Input
-          clearable
-          bordered
-          animated
-          color="primary"
-          labelPlaceholder="email"
+          placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          css={{ marginBottom: "$5" }}
         />
-        <Input.Password
-          clearable
-          bordered
-          animated
-          color="primary"
-          labelPlaceholder="senha"
+        <Input
+          placeholder="senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Input.Password
-          clearable
-          bordered
-          animated
-          color="primary"
-          labelPlaceholder="confirmar senha"
+        <Input
+          placeholder="Confirmar senha"
           value={confirmpassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <input
+        {/* <input
           type="file"
           ref={inputRef}
           onChange={onSelectFile}
           style={{ display: "none" }}
-        />
+        /> */}
         <Button shadow size="sm" onPress={(e) => handleUploadClick(e)}>
           {" "}
           inserir foto{" "}
@@ -197,13 +195,6 @@ const Register = () => {
             "Cadastrar"
           )}
         </ButtonRegister>
-        {errorMessage && (
-          <Tooltip content="Tente novamente" color="error">
-            <Button flat auto color="error" onClick={() => clearCredentials()}>
-              {errorMessage}
-            </Button>
-          </Tooltip>
-        )}
       </ContainerCredentials>
     </Container>
   );
