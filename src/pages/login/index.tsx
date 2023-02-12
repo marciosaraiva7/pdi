@@ -15,14 +15,13 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  let baseURL = "https://pdi-backend-next.vercel.app/api";
+  const baseURL = "https://pdi-backend-next.vercel.app/api";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const requestHeaders: HeadersInit = new Headers();
   requestHeaders.set("Content-Type", "application/json");
-  const buttonLable = "Entrar";
 
   const navigate = useNavigate();
 
@@ -100,7 +99,7 @@ const Login = () => {
           {loading ? (
             <Loading type="spinner" color="currentColor" size="sm" />
           ) : (
-            buttonLable
+            "Entrar"
           )}
         </ButtonLogin>
         <ContainerButtonLink>

@@ -10,8 +10,10 @@ import useDecoder from "../../hooks/useDecoder";
 //icons
 import { SunIcon } from "../../assets/icons/SunIcon";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
+import { SpotifyLogo } from "../../assets/svgs/spotify_logo";
 import { signout } from "../../store/auth/actions";
 import { switchTheme } from "../../store/styles/actions";
+import useCleanerTokens from "../../hooks/useCleanerTokens";
 
 const Header = () => {
   //styled
@@ -37,13 +39,15 @@ const Header = () => {
 
   function handleLogout() {
     dispatch(signout());
-    window.localStorage.removeItem("token");
+    useCleanerTokens();
     navigate(0);
   }
 
   return (
     <Container>
-      <Title>PDI</Title>
+      <Title>
+        PDI | <SpotifyLogo height="48px" width="150px" />
+      </Title>
       <p>{name}</p>
     </Container>
   );

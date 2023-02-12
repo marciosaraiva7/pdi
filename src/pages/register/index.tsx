@@ -62,7 +62,7 @@ const Register = () => {
         body: data,
       };
       if (objectData.status === 200) {
-        success("Cadastro criado com sucesso");
+        navigate('/login')
       }
       setLoading(false);
       setErrorMessage(objectData.body.message);
@@ -124,22 +124,6 @@ const Register = () => {
   return (
     <Container>
       <ToastContainer
-        enableMultiContainer
-        containerId={"Sucess"}
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme={theme ? "dark" : "light"}
-      />
-      <ToastContainer
-        enableMultiContainer
-        containerId={"Error"}
         position="top-right"
         autoClose={10000}
         hideProgressBar={false}
