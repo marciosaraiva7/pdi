@@ -45,8 +45,7 @@ const Header = () => {
 
   return (
     <Container>
-      <Title>
-        PDI | <SpotifyLogo height="48px" width="150px" />
+      <Title>Pdi
       </Title>
       <p>{name}</p>
     </Container>

@@ -19,8 +19,7 @@ const Dashboard = () => {
   function toProfile() {
     navigate("/profile");
   }
-
-  console.log(tokenSpotify);
+  console.log(import.meta.env.VITE_Open_AI_Key)
 
   return (
     <Container>
@@ -28,7 +27,6 @@ const Dashboard = () => {
         <Title>Olá,{name}</Title>
         <SubTitle>Pesquise aqui prévia de musicas que você adora</SubTitle>
       </ContainerText>
-      <Player accessToken={tokenSpotify} trackUri={""} />
     </Container>
   );
 };
