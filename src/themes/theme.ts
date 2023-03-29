@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyles = createGlobalStyle`
 
   body {
@@ -14,7 +13,6 @@ export const darkTheme = {
   background: "#000000",
   color: "#f1f1f1",
   subtitle: "#dadedf",
-  inputBackground: "#222222",
   border: "#1170ed",
 };
 
@@ -22,6 +20,5 @@ export const lightTheme = {
   background: "#dadedf",
   color: "#000000",
   subtitle: "#999999",
-  inputBackground: "#ffffff",
   border: "#1170ed",
 };
