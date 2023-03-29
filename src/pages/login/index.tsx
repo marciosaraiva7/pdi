@@ -1,150 +1,120 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 
-import { Text, Button, Loading, Container, Input, Tooltip } from '@nextui-org/react';
-import { ButtonLink } from "./styles";
-import { GitHubCard } from "../../components/githubCard";
+import { Button, Loading, Tooltip } from "@nextui-org/react";
+import {
+  ButtonLink,
+  Container,
+  ContainerCredentials,
+  ContainerTitle,
+  Subtitle,
+  Title,
+  Input,
+  ButtonLogin,
+  ContainerButtonLink,
+} from "./styles";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Login = () => {
-  let baseURL = "https://pdi-backend-next.vercel.app/api";
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const baseURL = "https://pdi-backend-next.vercel.app/api";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const requestHeaders: HeadersInit = new Headers();
-  requestHeaders.set('Content-Type', 'application/json');
-  const buttonLable = "Entrar";
+  requestHeaders.set("Content-Type", "application/json");
 
   const navigate = useNavigate();
 
-
-
-
-
   async function handleLogin() {
-
     setLoading(true);
 
     try {
-      const response = await fetch(baseURL + '/auth/login', {
-        method: 'POST',
+      const response = await fetch(baseURL + "/auth/login", {
+        method: "POST",
         headers: requestHeaders,
         body: JSON.stringify({
           email,
-          password
-        })
-      })
+          password,
+        }),
+      });
 
       const data = await response.json();
       const objectData = {
         status: response.status,
-        body: data
-      }
+        body: data,
+      };
       if (objectData.status === 200) {
         window.localStorage.setItem("token", objectData.body.token);
         navigate(0);
-        return
-
-
+        return;
       }
       setLoading(false);
       setErrorMessage(objectData.body.message);
-    }
-    catch (err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
-
 
   useEffect(() => {
     if (errorMessage) {
-      setErrorMessage('');
+      setErrorMessage("");
     }
-  }, [email, password])
+  }, [email, password]);
 
   const handleDisable = () => {
     if (!email || !password || loading) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   const clearCredentials = () => {
-    setEmail('');
-    setPassword('');
-  }
+    setEmail("");
+    setPassword("");
+  };
 
   return (
-    <Container css={{ display: 'flex', flexFlow: 'row', gap: '100px', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }}>
-      <Container>
-        <GitHubCard />
-      </Container>
-      <Container css={{ width: '100%', padding: '0px' }}>
-        <Container css={{
-          padding: '0px',
-          marginBottom: '$15'
-        }}>
-          <Text
-            h1
-            size={60}
-            css={{
-              textAlign: 'left',
-            }}
-            weight="bold"
-          >Login</Text>
-          <Text h5 css={{ color: "$neutralLowLight", textAlign: 'left', fontWeight: '400' }}>Insira suas credenciais para acessar o painel</Text>
-        </Container>
-        <Container css={{
-          display: "flex",
-          flexDirection: "column",
-          padding: '0px',
-          gap: '$10'
-        }}>
-
-          <Input
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            css={{ marginBottom: '$5' }}
-          />
-          <Input.Password
-            clearable
-            bordered
-            animated
-            color="primary"
-            labelPlaceholder='senha'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            type="submit"
-            shadow
-            size="lg"
-            disabled={handleDisable()}
-            onPress={() => handleLogin()}
-            css={{ background: "$brandPure", fontFamily: 'Inter' }}>
-            {loading ? <Loading type="spinner" color="currentColor" size="sm" /> : buttonLable}
-          </Button>
-          <ButtonLink to={'/register'}>
-            Registrar
-          </ButtonLink>
-          <Container css={{ display: 'flex', justifyContent: 'center' }}>
-            {errorMessage && <Tooltip content="Tente novamente" color="error">
-              <Button flat auto color="error" onClick={() => clearCredentials()}>{errorMessage}</Button>
-            </Tooltip>}
-          </Container>
-        </Container>
-      </Container>
+    <Container>
+      <ContainerTitle>
+        <Title>Login</Title>
+        <Subtitle>Insira suas credenciais para acessar o painel</Subtitle>
+      </ContainerTitle>
+      <ContainerCredentials>
+        <Input
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <ButtonLogin
+          type="submit"
+          disabled={handleDisable()}
+          onClick={() => handleLogin()}
+        >
+          {loading ? (
+            <Loading type="spinner" color="currentColor" size="sm" />
+          ) : (
+            "Entrar"
+          )}
+        </ButtonLogin>
+        <ContainerButtonLink>
+          <ButtonLink to={"/register"}>Registrar</ButtonLink>
+        </ContainerButtonLink>
+        {errorMessage && (
+          <Tooltip content="Tente novamente" color="error">
+            <Button flat auto color="error" onClick={() => clearCredentials()}>
+              {errorMessage}
+            </Button>
+          </Tooltip>
+        )}
+      </ContainerCredentials>
     </Container>
-
-  )
-}
+  );
+};
 
 export default Login;

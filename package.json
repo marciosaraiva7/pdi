@@ -19,15 +19,21 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-notifications-component": "^4.0.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-skeleton-loader": "^1.0.4",
     "react-spinners": "^0.13.7",
+    "react-switch": "^7.0.0",
+    "react-toastify": "^9.1.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
-    "styled-component": "^2.8.0",
-    "styled-components": "^5.3.6"
+    "retext": "^8.1.0",
+    "retext-emoji": "^8.1.0",
+    "retext-profanities": "^7.2.2",
+    "styled-components": "^5.3.6",
+    "vfile-reporter": "^7.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
