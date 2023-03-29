@@ -37,7 +37,7 @@ export const Subtitle = styled.h5`
 `;
 
 export const Input = styled.input`
-  background: ${({ theme }) => theme?.inputBackground};
+  background: ${(props) => props.theme.background};
   color: ${({ theme }) => theme?.color};
   border: none;
   border-radius: 1rem;
