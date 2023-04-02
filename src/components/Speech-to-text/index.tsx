@@ -60,7 +60,7 @@ export const SpeechToText = (props: SpeechToTextProps) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer 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`,
         },
         body: formData,
       }

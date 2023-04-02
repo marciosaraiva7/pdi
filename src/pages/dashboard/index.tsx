@@ -63,7 +63,7 @@ const Dashboard = () => {
   }
 
   async function HandleForm() {
-    fetch("https://pdi-backend-next.vercel.app/api/AI/chatAI", {
+    fetch("http://localhost:3000/api/ai/chat-ai", {
       method: "POST",
       headers: {
         Accept: "*/*",
